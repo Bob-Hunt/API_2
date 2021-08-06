@@ -1,5 +1,11 @@
-// const apiKey = "47a456ff-4d8c-4295-b487-9500e5c8cb5e";
-let country = "Japan"
+const apiKey = "47a456ff-4d8c-4295-b487-9500e5c8cb5e";
+let endpoint;
+let country;
+let state;
+let city;
+let res;
+let json;
+// let country = "Japan"
 // const myAPI = `https://api.airvisual.com/v2/states?country=${countryName}&key=${apiKey}`;
 
 
@@ -16,12 +22,12 @@ const states = `https://api.airvisual.com/v2/states?country=${country}&key=${api
 // List of supported cities in a state (New York)**
 // const cities = `https://api.airvisual.com/v2/cities?state=New%20York&country=USA&key=${apiKey}`
 // {"status":"success","data":[{"city":"Addison"},{"city":"Albany"},{"city":"Armonk"},{"city":"Ballston Spa"},{"city":"Brockport"},{"city":"Buffalo"},{"city":"Cairo"},{"city":"Canton"},{"city":"Carthage"},{"city":"Cheektowaga"},{"city":"Clayton"},{"city":"Dover Plains"},{"city":"Dunkirk"},{"city":"East Northport"},{"city":"Fredonia"},{"city":"Glen Cove"},{"city":"Greenport"},{"city":"Hell's Kitchen"},{"city":"Holtsville"},{"city":"Irvington"},{"city":"Ithaca"},{"city":"Johnson City"},{"city":"Katonah"},{"city":"Keeseville"},{"city":"Kings Park"},{"city":"Lake Placid"},{"city":"Lancaster"},{"city":"Manhattan"},{"city":"Middleport"},{"city":"Middletown"},{"city":"Monticello"},{"city":"Naples"},{"city":"Nassau"},{"city":"New Paltz"},{"city":"New York City"},{"city":"Newburgh"},{"city":"Newcomb"},{"city":"North Tonawanda"},{"city":"Northeast Ithaca"},{"city":"Ossining"},{"city":"Otisville"},{"city":"Piseco"},{"city":"Pittsford"},{"city":"Pleasant Valley"},{"city":"Pomona"},{"city":"Port Richmond"},{"city":"Poughkeepsie"},{"city":"Riverhead"},{"city":"Riverside"},{"city":"Rochester"},{"city":"Scarsdale"},{"city":"Shokan"},{"city":"The Bronx"},{"city":"Tonawanda"},{"city":"Utica"},{"city":"Webster"},{"city":"White Plains"},{"city":"Whitesboro"},{"city":"Williamsburg"},{"city":"Williston"},{"city":"Wilmington"},{"city":"Wynantskill"}]}
-// const cities = `https://api.airvisual.com/v2/cities?state=${state}&country=${country}&key=${apiKey}`
+const cities = `https://api.airvisual.com/v2/cities?state=${state}&country=${country}&key=${apiKey}`
 
 // nearest city data (IP geolocation) **
 // const city_ip = `https://api.airvisual.com/v2/nearest_city?key=${apiKey}`
 // {"status":"success","data":{"city":"Inashiki","state":"Ibaraki","country":"Japan","location":{"type":"Point","coordinates":[140.32356,35.95633]},"current":{"weather":{"ts":"2021-08-03T22:00:00.000Z","tp":27,"pr":1016,"hu":91,"ws":2.24,"wd":270,"ic":"03d"},"pollution":{"ts":"2021-08-04T00:00:00.000Z","aqius":17,"mainus":"p2","aqicn":6,"maincn":"p2"}}}}
-const city_ip = `https://api.airvisual.com/v2/nearest_city?key=${apiKey}`
+// const city_ip = `https://api.airvisual.com/v2/nearest_city?key=${apiKey}`
 
 // Nearest city date (GPS coordinates) **
 // const city_gps = `https://api.airvisual.com/v2/nearest_city?lat=35.98&lon=140.33&key=${apiKey}`
@@ -32,50 +38,115 @@ const city_ip = `https://api.airvisual.com/v2/nearest_city?key=${apiKey}`
 // Specified city data (Los Angeles)**
 // const city_data = `https://api.airvisual.com/v2/city?city=Los%20Angeles&state=California&country=USA&key=${apiKey}`
 // {"status":"success","data":{"city":"Los Angeles","state":"California","country":"USA","location":{"type":"Point","coordinates":[-118.2417,34.0669]},"current":{"weather":{"ts":"2021-08-04T00:00:00.000Z","tp":29,"pr":1011,"hu":39,"ws":3.09,"wd":280,"ic":"01d"},"pollution":{"ts":"2021-08-04T00:00:00.000Z","aqius":24,"mainus":"p2","aqicn":8,"maincn":"p2"}}}}
-// const city_data = `https://api.airvisual.com/v2/city?city=${city}&state=${state}&country=${country}&key=${apiKey}`
+const city_data = `https://api.airvisual.com/v2/city?city=${city}&state=${state}&country=${country}&key=${apiKey}`
 
 
 // function getFetch(apiKey, countryName){
 console.log(apiKey);
 // console.log(`myAPI: ${myAPI}`);
-console.log(`countries: ${countries}`);
+// console.log(`countries: ${countries}`);
 // console.log(`country: ${countryName}`);
-console.log(`states: ${states}`);
+// console.log(`states: ${states}`);
 // console.log(`cities: ${cities}`);
 // console.log(`city_ip: ${city_ip}`);
 // console.log(`city_gps: ${city_gps}`);
 // console.log(`city_data: ${city_data}`);
 
-let badAirList = document.querySelector('ul');
+// let badAirList = document.querySelector('ul');
 
 
+// fetch(countries)
+//     .then(function(response){
+//         return response.json()
+//     })
+//     .catch(function(err){
+//         console.log(err);
+//     })
+//     .then(function(json){
+//         console.log(`json.status: ${json.status}`);
+//         let countrypool = json.data;
+//         for (let countryData of countrypool){
+//             let country = countryData.country;
+//             let countryItem = document.createElement('li');
+//             counntryItem.innerHTML = `<p> ${country} </p>`;
+//             badAirList.appendChild(countryItem);
+//         };
+//     });
 
-fetch(countries)
-    .then(function(response){
-        return response.json()
-    })
-
+async function getCityInfo(country, state, city){
+    country = country;
+    state = state;
+    city = city;
+    res = await fetch(city_data)
+    json = await res.json()
+        
     .catch(function(err){
         console.log(err);
     })
+    let cityInfopool = json.data;
+    console.log(`cityInfopool ${cityInfopool}`)
+}
 
-    .then(function(json){
-        console.log(`json.status: ${json.status}`);
-        // console.log(`json.data[3].country: ${json.data[3].country}`);
-        // console.log(`json: ${json}`);
-        // console.log(`json.data[3]: ${json.data[3]}`);
+getCityInfo("USA", "California", "Los Angeles");
 
-        // console.log('end');
-        let datapool = json.data;
-        for (let dataItem of datapool){
-            console.log(`dataItem.country: ${dataItem.country}`);
-            let country = dataItem.country;
-            let listItem = document.createElement('li');
-            listItem.innerHTML = `<p> ${country} </p>`;
-            badAirList.appendChild(listItem);
-        };
+async function getCities(country, state){
+    country = country;
+    state = state;
+    res = await fetch(states)
+    json = await res.json()
+        
+    .catch(function(err){
+        console.log(err);
+    })
+    let citiespool = json.data;
+    for (let citiesData of citiespool){
+        let city = citiesData.city;
+        let citiesItem = document.createElement('li');
+        citiesItem.innerHTML = `<p> ${city} </p>`;
+        badAirList.appendChild(citiesItem);
+    };
+}
 
-    });
+getCities("USA", "California");
+
+async function getStates(country){
+
+    country = country;
+    res = await fetch(states)
+    json = await res.json()
+        
+    .catch(function(err){
+        console.log(err);
+    })
+    let statespool = json.data;
+    for (let statesData of statespool){
+        let state = statesData.state;
+        let stateItem = document.createElement('li');
+        stateItem.innerHTML = `<p> ${state} </p>`;
+        badAirList.appendChild(stateItem);
+    };
+}
+
+getStates("USA");
+
+async function getCountries(){
+    res = await fetch(coutries)
+    json = await res.json()
+        
+    .catch(function(err){
+        console.log(err);
+    })
+    let countrypool = json.data;
+    for (let countryData of countrypool){
+        let country = countryData.country;
+        let countryItem = document.createElement('li');
+        countryItem.innerHTML = `<p> ${country} </p>`;
+        badAirList.appendChild(countryItem);
+    };
+}
+
+getStates();
+
 
 // async function getBadAir(country){
 
