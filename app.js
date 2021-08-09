@@ -42,71 +42,71 @@ let badAirList4 = document.getElementById('yuck4');
 
 
 // // Fetch Countries
-// async function getCountries(){
-//     res = await fetch(countries)
-//     json = await res.json()
+async function getCountries(){
+    res = await fetch(`https://api.airvisual.com/v2/countries?key=${apiKey}`)
+    json = await res.json()
         
-//     .catch(function(err){
-//         console.log(err);
-//     })
-//     let countrypool = json.data;
-//     for (let countryData of countrypool){
-//         let country = countryData.country;
-//         let countryItem = document.createElement('li');
-//         countryItem.innerHTML = `<p> ${country} </p>`;
-//         badAirList1.appendChild(countryItem);
-//     };
-// }
+    .catch(function(err){
+        console.log(err);
+    })
+    let countrypool = json.data;
+    for (let countryData of countrypool){
+        let country = countryData.country;
+        let countryItem = document.createElement('li');
+        countryItem.innerHTML = `<p> ${country} </p>`;
+        badAirList1.appendChild(countryItem);
+    };
+}
 
-// getCountries();
+getCountries();
 
 
-// // fetch States
-// async function getStates(country){
-//     country = country;
-//     console.log(country);
-//     let statesAPI = `https://api.airvisual.com/v2/states?country=${country}&key=${apiKey}`;
-//     // console.log(`statesAPI: ${statesAPI});
-//     res = await fetch(statesAPI)
-//     console.log(res);
-//     json = await res.json()
+// fetch States
+async function getStates(country){
+    country = country;
+    console.log(country);
+    let statesAPI = `https://api.airvisual.com/v2/states?country=${country}&key=${apiKey}`;
+    // console.log(`statesAPI: ${statesAPI});
+    res = await fetch(statesAPI)
+    // console.log(res);
+    json = await res.json()
         
-//     .catch(function(err){
-//         console.log(err);
-//     })
-//     let statespool = json.data;
-//     for (let statesData of statespool){
-//         let state = statesData.state;
-//         let stateItem = document.createElement('li');
-//         stateItem.innerHTML = `<p> ${state} </p>`;
-//         badAirList2.appendChild(stateItem);
-//     };
-// }
+    .catch(function(err){
+        console.log(err);
+    })
+    let statespool = json.data;
+    for (let statesData of statespool){
+        let state = statesData.state;
+        let stateItem = document.createElement('li');
+        stateItem.innerHTML = `<p> ${state} </p>`;
+        badAirList2.appendChild(stateItem);
+    };
+}
 
-// getStates("USA", states);
+getStates("USA");
 
 
 // // Fetch Cities
-// async function getCities(country, state){
-//     country = country;
-//     state = state;
-//     let citiesAPI =`https://api.airvisual.com/v2/cities?state=${state}&country=${country}&key=${apiKey}`
-//     res = await fetch(citiesAPI)
-//     json = await res.json()
+async function getCities(country, state){
+    country = country;
+    state = state;
+    let citiesAPI =`https://api.airvisual.com/v2/cities?state=${state}&country=${country}&key=${apiKey}`
+    res = await fetch(citiesAPI)
+    json = await res.json()
         
-//     .catch(function(err){
-//         console.log(err);
-//     })
-//     let citiespool = json.data;
-//     for (let citiesData of citiespool){
-//         let city = citiesData.city;
-//         let citiesItem = document.createElement('li');
-//         citiesItem.innerHTML = `<p> ${city} </p>`;
-//         badAirList3.appendChild(citiesItem);
-//     };
-// }
+    .catch(function(err){
+        console.log(err);
+    })
+    let citiespool = json.data;
+    for (let citiesData of citiespool){
+        let city = citiesData.city;
+        let citiesItem = document.createElement('li');
+        citiesItem.innerHTML = `<p> ${city} </p>`;
+        badAirList3.appendChild(citiesItem);
+    };
+}
 
-// getCities("USA", "California");
+getCities("USA", "California");
 
 
 // Fetch City Data
@@ -117,24 +117,25 @@ async function getCityInfo(country, state, city){
     let cityDataAPI = `https://api.airvisual.com/v2/city?city=${city}&state=${state}&country=${country}&key=${apiKey}`
     res = await fetch(cityDataAPI)
     json = await res.json()
+    .catch(function(err){
+        console.log(err);
+    })
+
     let status = json.status
     console.log(`status: ${status}`)
     let keysToTheCity = json.data
     console.log(`keysToTheCity: ${keysToTheCity}`)// {object Object}
-    // .catch(function(err){
-    //     console.log(err);
-
-    let locationCity = keysToTheCity.location; // // {object Object}
-    console.log(`locationCity: ${locationCity}`);
-    let currentCity = keysToTheCity.current; // {object Object}
-    console.log(`currentCity: ${currentCity}`);
+    let cityLocation = keysToTheCity.location; // // {object Object}
+    console.log(`cityLocation: ${cityLocation}`);
+    let cityConditions = keysToTheCity.current; // {object Object}
+    console.log(`cityConditions: ${cityConditions}`);
 
 
     
     // accesses City, State, Country, Location, Current from json.data
     for (let cityKey in keysToTheCity){
         console.log(`cityKey: ${cityKey}`);
-      
+    
         let cityInfoItem = document.createElement('li');
         cityInfoItem.innerHTML = `<p> cityKey: cityKey.value = ${cityKey}: ${cityKey.value} </p>`;
         badAirList4.appendChild(cityInfoItem);
@@ -144,7 +145,7 @@ async function getCityInfo(country, state, city){
 
     // accesses Weather, Polution from Current
     console.log("Fingers Crossed!")
-    for (let cityKey in currentCity){
+    for (let cityKey in cityConditions){
         console.log(`cityKey: ${cityKey}`);
             Object.keys(cityKey)
             .forEach(function eachKey(key) {
@@ -164,41 +165,33 @@ async function getCityInfo(country, state, city){
         
                     })
                     
-            })
+        })
     }
 
     // accesses Type, Coordinates from Location
     console.log("Toes Crossed")
-    for (let cityKey in locationCity){
+    for (let cityKey in cityLocation){
+        let locationKey = keysToTheCity.location.cityKey;
+        console.log(keysToTheCity.location.cityKey);
+        console.log(locationKey);
+        let locationKey2 = `keysToTheCity.location.${cityKey}`;
+        console.log(`keysToTheCity.location.${cityKey}`);
+        console.log(locationKey2);
+        let locationKey3 = `${keysToTheCity}.location.${cityKey}`;
+        console.log(`${keysToTheCity}.location.${cityKey}`);
+        console.log(locationKey3);
+        let locationKey4 = keysToTheCity.location;
+        console.log(locationKey4);
+        let locationKey5 = locationKey4.cityKey;
+        console.log(locationKey5);
+
         let cityInfoItem = document.createElement('li');
-        cityInfoItem.innerHTML = `<p> cityKey: ${cityKey}; keysToTheCity.location.type: ${keysToTheCity.location.type}; keysToTheCity.location.coordinates: ${keysToTheCity.location.coordinates}</p>`;
+        cityInfoItem.innerHTML = `<p> cityKey: ${cityKey}; keysToTheCity.location.type: ${keysToTheCity.location.type}; keysToTheCity.location.coordinates: ${keysToTheCity.location.coordinates}; locationKey5: ${locationKey5}</p>`;
+        // cityInfoItem.innerHTML = `<p> cityKey: ${cityKey}; locationKey: ${locationKey}; </p>`;
         badAirList4.appendChild(cityInfoItem);     
-    }
-}   
+    };
+};
+
         
-    getCityInfo("USA", "California", "Los Angeles");
+getCityInfo("USA", "California", "Los Angeles");
      
-//     // accesses Type, Coordinates from Location
-//     console.log("Toes Crossed")
-//     for (let cityKey in locationCity){
-//         // console.log(`cityKey: ${cityKey}`);
-//         // Object.keys(cityKey)
-//         // .forEach(function eachKey(key) {
-//         //     console.log(`key${key}`);//enumerated value of each letter of TYPE and COORDINATES
-
-//         //     Object.keys(key)
-//         //         .forEach(function keyEach(theKey){
-//         //             console.log(`theKey: ${theKey}`);// Value of each letter of TYPE and COORDINATES
-//                     let cityInfoItem = document.createElement('li');
-//                     cityInfoItem.innerHTML = `<p> cityKey: ${cityKey}; keysToTheCity.location.type: ${keysToTheCity.location.type}; keysToTheCity.location.coordinates: ${keysToTheCity.location.coordinates}</p>`;
-//                     badAirList4.appendChild(cityInfoItem); 
-
-    
-//         //         })
-                
-//         // })
-//     }
-// }    
-    
-// getCityInfo("USA", "California", "Los Angeles");
- 
