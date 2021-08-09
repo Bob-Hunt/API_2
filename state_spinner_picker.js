@@ -8,7 +8,7 @@
 
 // Load the main spinner_picker.js script into the document when needed.
 new SpinnerPicker(
-    document.getElementById("example"),
+    document.getElementById("yuck2"),
     function(index) {
       // Check if the index is in range of the array - Return null if its not the case
       if(index < 0 || index >= selectableFruits.length) {

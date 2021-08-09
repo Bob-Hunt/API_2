@@ -50,19 +50,25 @@ async function getCountries(){
         console.log(err);
     })
     let countrypool = json.data;
+    let countriesArr = [];
     for (let countryData of countrypool){
-        let country = countryData.country;
-        let countryItem = document.createElement('li');
-        countryItem.innerHTML = `<p> ${country} </p>`;
-        badAirList1.appendChild(countryItem);
+        countriesArr.push(countryData.country);
+        // let country = countryData.country;
+        // let countryItem = document.createElement('li');
+        // countryItem.innerHTML = `<p> ${country} </p>`;
+        // badAirList1.appendChild(countryItem);
     };
-}
+    let countries = countriesArr;
+    let countryItem = document.createElement('li');
+    countryItem.innerHTML = `<p> ${countries} </p>`;
+    badAirList1.appendChild(countryItem);}
 
 getCountries();
 
 
 // fetch States
 async function getStates(country){
+    let countryArr = [];
     country = country;
     console.log(country);
     let statesAPI = `https://api.airvisual.com/v2/states?country=${country}&key=${apiKey}`;
@@ -76,11 +82,16 @@ async function getStates(country){
     })
     let statespool = json.data;
     for (let statesData of statespool){
-        let state = statesData.state;
-        let stateItem = document.createElement('li');
-        stateItem.innerHTML = `<p> ${state} </p>`;
-        badAirList2.appendChild(stateItem);
+        countryArr.push(statesData.state);
+        // let state = statesData.state;
+        // let stateItem = document.createElement('li');
+        // stateItem.innerHTML = `<p> ${state} </p>`;
+        // badAirList2.appendChild(stateItem);
     };
+    let states = countryArr;
+    let stateItem = document.createElement('li');
+    stateItem.innerHTML = `<p> ${states} </p>`;
+    badAirList2.appendChild(stateItem);
 }
 
 getStates("USA");
@@ -98,12 +109,18 @@ async function getCities(country, state){
         console.log(err);
     })
     let citiespool = json.data;
+    let citiesArr = [];
     for (let citiesData of citiespool){
-        let city = citiesData.city;
-        let citiesItem = document.createElement('li');
-        citiesItem.innerHTML = `<p> ${city} </p>`;
-        badAirList3.appendChild(citiesItem);
+        citiesArr.push(citiesData.city)
+        // let city = citiesData.city;
+        // let citiesItem = document.createElement('li');
+        // citiesItem.innerHTML = `<p> ${city} </p>`;
+        // badAirList3.appendChild(citiesItem);
     };
+    let cities = citiesArr;
+    let citiesItem = document.createElement('li');
+    citiesItem.innerHTML = `<p> ${cities} </p>`;
+    badAirList3.appendChild(citiesItem);
 }
 
 getCities("USA", "California");
@@ -121,27 +138,33 @@ async function getCityInfo(country, state, city){
         console.log(err);
     })
 
-    let status = json.status
-    console.log(`status: ${status}`)
+    // let status = json.status
+    // console.log(`status: ${status}`)
     let keysToTheCity = json.data
-    console.log(`keysToTheCity: ${keysToTheCity}`)// {object Object}
-    let cityLocation = keysToTheCity.location; // // {object Object}
-    console.log(`cityLocation: ${cityLocation}`);
-    let cityConditions = keysToTheCity.current; // {object Object}
-    console.log(`cityConditions: ${cityConditions}`);
+    console.log(`keysToTheCity: ${keysToTheCity}`); // {object Object}
+    let cityLocation = keysToTheCity.location; 
+    console.log(`cityLocation: ${cityLocation}`); // {object Object}
+    let cityConditions = keysToTheCity.current; 
+    console.log(`cityConditions: ${cityConditions}`); // {object Object}
 
 
     
     // accesses City, State, Country, Location, Current from json.data
+    let cityKeysArr = [];
     for (let cityKey in keysToTheCity){
         console.log(`cityKey: ${cityKey}`);
+        cityKeysArr.push(cityKey);
     
-        let cityInfoItem = document.createElement('li');
-        cityInfoItem.innerHTML = `<p> cityKey: cityKey.value = ${cityKey}: ${cityKey.value} </p>`;
-        badAirList4.appendChild(cityInfoItem);
+        // let cityInfoItem = document.createElement('li');
+        // cityInfoItem.innerHTML = `<p> cityKey: cityKey.value = ${cityKey}: ${cityKey.value} </p>`;
+        // badAirList4.appendChild(cityInfoItem);
         // Create a line for each (city, state, country)
         // Create a button for each (Location, Current)?
     };
+    let cityKeys = cityKeysArr;
+    let cityInfoItem = document.createElement('li');
+    cityInfoItem.innerHTML = `<p> cityKeysArr = ${cityKeys}</p>`;
+    badAirList4.appendChild(cityInfoItem);
 
     // accesses Weather, Polution from Current
     console.log("Fingers Crossed!")
