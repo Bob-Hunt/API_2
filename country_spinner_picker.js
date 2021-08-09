@@ -7,14 +7,14 @@
 
 
 // Load the main spinner_picker.js script into the document when needed.
-new SpinnerPicker(
-    document.getElementById("yuck1"),
+let country_spinner_picker = new SpinnerPicker(
+    document.getElementById("yucky1"),
     function(index) {
       // Check if the index is in range of the array - Return null if its not the case
-      if(index < 0 || index >= selectableFruits.length) {
+      if(index < 0 || index >= coutriesArr.length) {
         return null;
       }
-      return selectableFruits[index];
+      return countriesArr[index];
     }, { 
       index: 0, 
       selection_color: "orange"
@@ -26,7 +26,7 @@ new SpinnerPicker(
 var onchanged = function(index) {
     // do something
 };
-SpinnerPicker(canvas, valueHandler, options, onchanged);
+country_spinner_picker(canvas, valueHandler, options, onchanged);
 
 
 
