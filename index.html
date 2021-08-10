@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bad Air Day</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- <script src="spinner_picker.js"></script> -->
 </head>
 <body>
     <h1>Having a BAD AIR Day?</h1>
@@ -46,34 +45,24 @@
             <div class="body-wrapper-image" id="english">
                 <div class="container">
                         <div id="main-categories" class="row">
-                            <!-- Films => countries-->
-                            <!-- <div id="films" class="column-button"> -->
                             <div id="countries" class="column-button">
-                                <!-- <button class="button-main" type="button" onclick="chooseInput(this)" id="films"> -->
-                                <button class="button-main" type="button" onclick="chooseInput(this)" id="">
-                                        Select a Country
+                                <!-- <button class="button-main" type="button" onclick="chooseInput(this)" id="nuthin"> -->
+                                <button class="button-main" type="button" onclick="getFetch(this)" id="nuthin">
+                                    Select a Country
                                 </button>
                                 <div class="row">
-                                    <!-- <ul id="filmsList"></ul> -->
                                     <ul id="countriesList"></ul>
                                 </div>
                             </div>
-                            <!-- People => States -->
-                            <!-- <div id="people" class="column-button"> -->
                             <div id="states" class="column-button">
-                                <!-- <button class="button-main" type="button" onclick="chooseInput(this)" id="people"> -->
                                 <button class="button-main" type="button" onclick="chooseInput(this)" id="states">
                                     Select a State
                                 </button>
                                 <div class="row">
-                                    <!-- <ul id="peopleList"></ul> -->
                                     <ul id="statesList"></ul>
                                 </div>
                             </div>
-                            <!-- species => Cities -->
-                            <!-- <div id="species" class="column-button"> -->
                             <div id="cities" class="column-button">
-                                <!-- <button class="button-main" type="button" onclick="chooseInput(this)" id="species"> -->
                                 <button class="button-main" type="button" onclick="chooseInput(this)" id="cities">
                                     Choose a City
                                 </button>
@@ -81,44 +70,30 @@
                                     <ul id="citiesList"></ul>
                                 </div>
                             </div>
-                            <!-- Locations => City_Data -->
-                            <!-- <div id="locations" class="column-button"> -->
                             <div id="city_data" class="column-button">
-                                <!-- <button class="button-main" type="button" onclick="chooseInput(this)" id="locations"> -->
-                                <button class="button-main" type="button" onclick="chooseInput(this)" id="lcity_data">
-                                    Ghibli Locations
+                                <button class="button-main" type="button" onclick="chooseInput(this)" id="city_data">
+                                    City_Data
                                 </button>
                                 <div class="row">
-                                    <!-- <ul id="locationsList"></ul> -->
-                                    <ul id="lcity_dataList"></ul>
+                                    <ul id="city_dataList"></ul>
                                 </div>
                             </div>
                         </div>
                 </div>
                 <div id=displayList>
-                    <!-- Display countries in 3 columns *** as buttons *** -->
                     <div class="translate-container" id="show-hide-div">
                         <div class="btn-translate-wrapper">
                             <button class="btn-translate-btn" type="button" onclick="titleTranslate(this)" id="japanese">
                                 Something Bad Air Related...
                             </button>
                         </div>
-                        <!-- <div class="btn-translate-wrapper">
-                            <button class="btn-translate-btn" type="button" onclick="titleTranslate(this)" id="english">
-                                English Titles
-                            </button>
-                        </div> -->
                     </div>
-                    <!-- Countries display BELOW -->
                     <div class="ul-wrapper">
                         <ul class="ul-display" id="ul-one">
-                            <!-- selected list will be displayed here if i%3 =1 -->
                         </ul>
                         <ul class="ul-display" id="ul-two">
-                            <!-- selected list will be displayed here if i%3 =2-->
                         </ul>
                         <ul class="ul-display" id="ul-three">
-                            <!-- selected list will be displayed here if i%3 =0-->
                         </ul>
                     </div>
                 </div>
