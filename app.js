@@ -23,7 +23,7 @@ async function getCountries(){
         console.log(json.data);
         let dataArr = [];
         for (let dataItem of json.data){
-            dataArr.push(dataItem.country);
+            dataArr.push(dataItem);
         };
         console.log(`completed the loop!`)
         continueFunction(dataArr);
@@ -179,15 +179,19 @@ async function continueFunction(dataArr){
         count += 1;
         console.log(count);
         let listItem = document.createElement('li');                // CityData has keys of "current" & "location", which have their own keys. 
-        console.log(item);
+        console.log(`key:${item.property}`);
+        console.log(`value:${item.country}`);
         // checks for key of 'country', if exists, uses 'country' for the key.
         if (item.hasOwnProperty('country')) {
+            console.log(`Has Own Property country`);
             listItem.innerHTML = '<p>' + item.country + '</p>';
+            console.log('<p>' + item.country + '</p>')
             bodyWrapperImg.setAttribute('id', 'country');
             break;
         
         // checks for key of 'state', if exists, uses 'state' for the key.
         } else if (item.hasOwnProperty('state')) {
+            console.log(`has own property state`);
             listItem.innerHTML = '<p>' + item.country + '</p>';
             bodyWrapperImg.setAttribute('id', 'state');
             break;
