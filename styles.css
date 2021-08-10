@@ -2,5 +2,181 @@ body{
     margin: 0px 0px 0px 0px;
     padding: 0px 0px 0px 0px;
     border: 0px 0px 0px 0px;
+    overscroll-behavior: contain;
 }
 
+
+/* Ghibli Code */
+.body-container {
+    height: auto;
+    min-height: 100vh;
+    width: 100vw;
+    background-color: rgb(152, 212, 236);
+}
+
+.outer-wrapper{
+    background-image: url("./Assets/chihiro007.jpeg");
+    background-color: rgb(255, 228, 196);
+}
+
+#wrapper-title{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    color: rgb(231, 217, 200);
+}
+
+#title{
+    font-size: 24px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+#subtitle{
+    font-size: medium;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.body-wrapper {
+    min-height: 70vh;
+    position: relative;
+}
+
+.body-wrapper-image {
+    position: absolute;
+    min-height: 70vh;
+    width: 100vw;
+    object-fit: fill;
+    background-image: url("./Assets/chihiro007.jpeg");
+    background-position-x: center;
+    background-position-y: center;
+}
+
+#main-categories {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    padding-top: 5px;
+}
+
+.column-button {
+    width: 18%;
+    height: 50px;
+    background-color: rgba(255, 166, 0, 0);
+
+}
+
+.button-main {
+    color:rgb(88, 4, 4);
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 13px;
+    border-radius: 5px;
+    border: 0px 4px 6px 0px;
+    background-color: rgb(236, 86, 66);
+}
+
+#locations.button-main {
+    background-image: 'url("./Assets/ponyo039.jpeg")';
+}
+
+#vehicles.button-main {
+    background-image: 'url("./Assets/ponyo039.jpeg")';
+}
+
+#films-en {
+    background-position-x: center;  
+    background-position-y: top; 
+    background-size: cover; 
+}
+
+#films-jp {
+    background-position-x: left;  
+    background-position-y: top; 
+    background-size: cover; 
+}
+
+#people {
+    background-position-x: center;  
+    background-position-y: top; 
+    background-size: cover; 
+}
+
+#species {
+    background-position-x: center;  
+    background-position-y: center; 
+    background-size: cover; 
+
+}
+
+#locations {
+    background-position-x: center;  
+    background-position-y: top; 
+    background-size: cover; 
+}
+
+#vehicles {
+    background-position-x: left;  
+    background-position-y: center; 
+    background-size: cover;
+}
+
+#show-translate-container {
+    margin-top: 10px;
+    display: flex;
+}
+
+#hide-translate-container {
+    margin-top: 10px;
+    display: none;
+}
+
+.btn-translate-wrapper {
+    width: 50%;
+}
+
+.btn-translate-btn {
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    background-color:rgb(223, 76, 76);
+}
+
+.ul-display {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding-right: 10px;
+    width: 32%;
+    font-size: 24px;
+    background-color: rgba(255, 250, 240, 0.651);
+    color: black;
+}
+
+.ul-wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+#ul-one {
+    display: flex;
+    flex-direction: column;
+}
+
+#ul-two {
+    display: flex;
+    flex-direction: column;
+}
+
+#ul-three {
+    display: flex;
+    flex-direction: column;
+}

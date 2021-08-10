@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bad Air Day</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="spinner_picker.js"></script>
 </head>
 <body>
     <h1>Having a BAD AIR Day?</h1>
@@ -12,42 +14,226 @@
         <p>Going somewhere? How bad is their air? Find out from us, before you get there.</p>
     <hr>
         <h1>Bad air on the Planet</h1>
-    <p>Here are the things from the BAD AIR API.</p>
-        <ul id="yuck1">
-
-        </ul>
-        <canvas id="yucky1">
-
-        </canvas>
-
-    <h1>Bad air in that country</h1>
-    <p>Here are the things from the BAD AIR API.</p>
-        <ul id="yuck2">
-
-        </ul>
-        <canvas id="yucky2">
-
-        </canvas>
-
     
-    <h1>Bad air in that state</h1>
-    <p>Here are the things from the BAD AIR API.</p>
-        <ul id="yuck3">
+        <ul id="yuck1"></ul>
+        <canvas id="yucky1"></canvas>
 
-        </ul>
-        <canvas id="yucky3">
+        <ul id="yuck2"></ul>
+        <canvas id="yucky2"></canvas>
 
+        <ul id="yuck3"></ul>
+        <canvas id="yucky3"></canvas>
+
+        <ul id="yuck4"></ul>
+        <canvas id="yucky4"></canvas>
+<!-- Bad Air Code -->
+    <div class="body-container">
+        <div class="outer-wrapper">
+            <div id="wrapper-title" class="container-title">
+                <div class="row">
+                    <div id="title" class="column">
+                        <h1>Welcome to my Bad Air page!</h1>
+                    </div>
+                </div>
+                <!-- <div class="row">
+                    <div id="subtitle" class="column">
+                        <h2>'CLICK' a category to start exploring:</h2>
+                    </div>
+                </div> -->
+            </div>
         </div>
+        <div class="body-wrapper">
+            <div class="body-wrapper-image" id="english">
+                <div class="container">
+                        <div id="main-categories" class="row">
+                            <!-- Films => countries-->
+                            <!-- <div id="films" class="column-button"> -->
+                            <div id="countries" class="column-button">
+                                <!-- <button class="button-main" type="button" onclick="chooseInput(this)" id="films"> -->
+                                <button class="button-main" type="button" onclick="chooseInput(this)" id="countries">
+                                        Select a Country
+                                </button>
+                                <div class="row">
+                                    <!-- <ul id="filmsList"></ul> -->
+                                    <ul id="countriesList"></ul>
+                                </div>
+                            </div>
+                            <!-- People => States -->
+                            <!-- <div id="people" class="column-button"> -->
+                            <div id="states" class="column-button">
+                                <!-- <button class="button-main" type="button" onclick="chooseInput(this)" id="people"> -->
+                                <button class="button-main" type="button" onclick="chooseInput(this)" id="states">
+                                    Select a State
+                                </button>
+                                <div class="row">
+                                    <!-- <ul id="peopleList"></ul> -->
+                                    <ul id="statesList"></ul>
+                                </div>
+                            </div>
+                            <!-- species => Cities -->
+                            <!-- <div id="species" class="column-button"> -->
+                            <div id="cities" class="column-button">
+                                <!-- <button class="button-main" type="button" onclick="chooseInput(this)" id="species"> -->
+                                <button class="button-main" type="button" onclick="chooseInput(this)" id="cities">
+                                    Choose a City
+                                </button>
+                                <div class="row">
+                                    <ul id="citiesList"></ul>
+                                </div>
+                            </div>
+                            <!-- Locations => City_Data -->
+                            <!-- <div id="locations" class="column-button"> -->
+                            <div id="city_data" class="column-button">
+                                <!-- <button class="button-main" type="button" onclick="chooseInput(this)" id="locations"> -->
+                                <button class="button-main" type="button" onclick="chooseInput(this)" id="lcity_data">
+                                    Ghibli Locations
+                                </button>
+                                <div class="row">
+                                    <!-- <ul id="locationsList"></ul> -->
+                                    <ul id="lcity_dataList"></ul>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div id=displayList>
+                    <!-- Display countries in 3 columns *** as buttons *** -->
+                    <div class="translate-container" id="show-hide-div">
+                        <div class="btn-translate-wrapper">
+                            <button class="btn-translate-btn" type="button" onclick="titleTranslate(this)" id="japanese">
+                                Something Bad Air Related...
+                            </button>
+                        </div>
+                        <!-- <div class="btn-translate-wrapper">
+                            <button class="btn-translate-btn" type="button" onclick="titleTranslate(this)" id="english">
+                                English Titles
+                            </button>
+                        </div> -->
+                    </div>
+                    <!-- Countries display BELOW -->
+                    <div class="ul-wrapper">
+                        <ul class="ul-display" id="ul-one">
+                            <!-- selected list will be displayed here if i%3 =1 -->
+                        </ul>
+                        <ul class="ul-display" id="ul-two">
+                            <!-- selected list will be displayed here if i%3 =2-->
+                        </ul>
+                        <ul class="ul-display" id="ul-three">
+                            <!-- selected list will be displayed here if i%3 =0-->
+                        </ul>
+                    </div>
+                </div>
+            <!-- end body-wrapper image -->
+            </div>
+        <!-- end body-wrapper -->
+        </div>
+    <!-- end container -->
+    </div>  
 
-        
-    <h1>Bad air in that city</h1>
-    <p>Here are the things from the BAD AIR API.</p>
-        <ul id="yuck4">
 
-        </ul>
-        <canvas id="yucky4">
+    <!-- <script src="country_spinner_picker.js"></script>                    
+    <script src="state_spinner_picker.js"></script>                    
+    <script src="city_spinner_picker.js"></script>                     -->
+<script src="app.js"></script>
+</body>
+</html>
 
-        </canvas>
+<!-- Ghibi Code -->
+        <div class="body-container">
+            <div class="outer-wrapper">
+                <div id="wrapper-title" class="container-title">
+                    <div class="row">
+                        <div id="title" class="column">
+                            <h1>Welcome to my Ghibli Studio page!</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="subtitle" class="column">
+                            <h2>'CLICK' a category to start exploring:</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="body-wrapper">
+                <div class="body-wrapper-image" id="english">
+                    <div class="container">
+                            <div id="main-categories" class="row">
+                                <div id="films" class="column-button">
+                                    <button class="button-main" type="button" onclick="chooseInput(this)" id="films">
+                                        Ghibli Films
+                                    </button>
+                                    <div class="row">
+                                        <ul id="filmsList"></ul>
+                                    </div>
+                                </div>
+    
+                                <div id="people" class="column-button">
+                                    <button class="button-main" type="button" onclick="chooseInput(this)" id="people">
+                                        Ghibli Characters (People)
+                                    </button>
+                                    <div class="row">
+                                        <ul id="peopleList"></ul>
+                                    </div>
+                                </div>
+    
+                                <div id="species" class="column-button">
+                                    <button class="button-main" type="button" onclick="chooseInput(this)" id="species">
+                                        Ghibli Characters (Species)
+                                    </button>
+                                    <div class="row">
+                                        <ul id="speciesList"></ul>
+                                    </div>
+                                </div>
+    
+                                <div id="locations" class="column-button">
+                                    <button class="button-main" type="button" onclick="chooseInput(this)" id="locations">
+                                        Ghibli Locations
+                                    </button>
+                                    <div class="row">
+                                        <ul id="locationsList"></ul>
+                                    </div>
+                                </div>
+    
+                                <div id="vehicles" class="column-button">
+                                    <button class="button-main" type="button" onclick="chooseInput(this)" id="vehicles">
+                                        Ghibli Vehicles
+                                    </button>
+                                    <div class="row">
+                                        <ul id="VehiclesList"></ul>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div id=displayList>
+                        <div class="translate-container" id="show-hide-div">
+                            <div class="btn-translate-wrapper">
+                                <button class="btn-translate-btn" type="button" onclick="titleTranslate(this)" id="japanese">
+                                    Original Japanese Titles
+                                </button>
+                            </div>
+                            <div class="btn-translate-wrapper">
+                                <button class="btn-translate-btn" type="button" onclick="titleTranslate(this)" id="english">
+                                    English Titles
+                                </button>
+                            </div>
+                        </div>
+                        <div class="ul-wrapper">
+                            <ul class="ul-display" id="ul-one">
+                                <!-- selected list will be displayed here if i%3 =1 -->
+                            </ul>
+                            <ul class="ul-display" id="ul-two">
+                                <!-- selected list will be displayed here if i%3 =2-->
+                            </ul>
+                            <ul class="ul-display" id="ul-three">
+                                <!-- selected list will be displayed here if i%3 =0-->
+                            </ul>
+                        </div>
+                    </div>
+                <!-- end body-wrapper image -->
+                </div>
+            <!-- end body-wrapper -->
+            </div>
+        <!-- end container -->
+        </div>  
 
 
         <script src="country_spinner_picker.js"></script>                    
