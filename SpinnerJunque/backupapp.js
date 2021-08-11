@@ -345,7 +345,7 @@
 // showHideDiv.setAttribute('id', 'hide-translate-container');
 
 // let displayItems;
-// let bodyWrapperImg = document.querySelector(".body-wrapper-image");
+// let bodyWrapperImg = document.querySelector(".bodyWrapperImage");
 // let displayOne = document.getElementById('ul-one');
 // let displayTwo = document.getElementById('ul-two');
 // let displayThree = document.getElementById('ul-three');
