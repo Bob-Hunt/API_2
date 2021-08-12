@@ -45,9 +45,17 @@ async function getStates(country){
     })
     .then((json) => {
         console.log(json.data);
-        let dataArr = [];
+        let stateObj ={};
+        let countryKey = "country";
+        stateObj[countryKey] = country;
+        dataArr = [];
+        dataArr.push(stateObj);
         for (let dataItem of json.data){
-            dataArr.push(dataItem.state);
+            stateObj ={};
+            const stateKey = "state";
+            stateObj[stateKey] = dataItem.state;
+            dataArr.push(stateObj);
+            // dataArr.push(`{state: "${dataItem.state}"}`);
         };
         console.log(`completed the loop!`)
         continueFunction(dataArr);
@@ -59,6 +67,8 @@ async function getStates(country){
 };
 
 async function getCities(country, state){
+    console.log(`Country: ${country}`);
+    console.log(`State: ${state}`);
     console.log(`Getting Cities`);
     await fetch(`https://api.airvisual.com/v2/cities?state=${state}&country=${country}&key=${apiKey}`)
     .then(function(response){
@@ -66,9 +76,21 @@ async function getCities(country, state){
     })
     .then((json) => {
         console.log(json.data);
-        let dataArr = [];
+        let cityObj ={};
+        countryKey = "country";
+        cityObj[countryKey] = country;
+        dataArr = [];
+        dataArr.push(cityObj);
+        cityObj = {};
+        let stateKey = "state";
+        cityObj[stateKey] = state;
+        dataArr.push(cityObj);
         for (let dataItem of json.data){
-            dataArr.push(dataItem.city);
+        cityDataObj = {};
+        let stateKey = "state";
+        cityDataObj[stateKey] = state;
+        dataArr.push(cityDataObj);
+            // dataArr.push(`{city: "${dataItem.city}"}`);
         };
         console.log(`completed the loop!`)
         continueFunction(dataArr);
@@ -80,6 +102,9 @@ async function getCities(country, state){
 };
 
 async function getCityInfo(country, state, city){
+    console.log(`Country: ${country}`);
+    console.log(`State: ${state}`);
+    console.log(`City: ${city}`);
     console.log(`Getting City Info!`);
     await fetch(`https://api.airvisual.com/v2/city?city=${city}&state=${state}&country=${country}&key=${apiKey}`)
     .then(function(response){
@@ -87,12 +112,32 @@ async function getCityInfo(country, state, city){
     })
     .then((json) => {
         console.log(json.data);
-        let dataArr = [];
+        dataArr = [];
+        let cityInfoObj ={};
+        countryKey = "country";
+        cityInfoObj[countryKey] = country;
+        dataArr = [];
+        dataArr.push(cityInfoObj);
+        cityInfoObj = {};
+        let stateKey = "state";
+        cityInfoObj[stateKey] = state;
+        dataArr.push(cityInfoObj);
+        cityInfoObj = {};
+        let cityKey = "city";
+        cityInfoObj[cityKey] = city;
+        dataArr.push(cityInfoObj);
         for (let dataItem of json.data){
+            cityInfoObj ={};
             if (dataItem.hasOwnProperty('location')){
-            dataArr.push(dataItem.location);
+                let locObj ={};
+                const locKey = "location";
+                locObj[locKey] = dataItem.location;
+                dataArr.push(locObj);
             } else {
-            dataArr.push(dataItem.current);
+                let curObj ={};
+                const curKey = "current";
+                curObj[curKey] = dataItem.current;
+                dataArr.push(curObj);
             }
         };
         console.log(`completed the loop!`)
