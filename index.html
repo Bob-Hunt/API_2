@@ -12,31 +12,17 @@
         <p>Here we'll use the BAD AIR Api to get a list of places with BAD AIR!</p>
         <p>Going somewhere? How bad is their air? Find out from us, before you get there.</p>
     <hr>
-        <h1>Bad air on the Planet</h1>
-    
-        <ul id="yuck1"></ul>
-        <canvas id="yucky1"></canvas>
-
-        <ul id="yuck2"></ul>
-        <canvas id="yucky2"></canvas>
-
-        <ul id="yuck3"></ul>
-        <canvas id="yucky3"></canvas>
-
-        <ul id="yuck4"></ul>
-        <canvas id="yucky4"></canvas>
 <!-- Bad Air Code -->
     <div class="body-container">
         <div class="outer-wrapper">
             <div id="wrapper-title" class="container-title">
                 <div class="row">
                     <div id="title" class="column">
-                        <h1>Welcome to my Bad Air page!</h1>
                     </div>
                 </div>
                 <div class="row">
                     <div id="subtitle" class="column">
-                        <h2>'CLICK' a category to start exploring:</h2>
+                        <h2>'CLICK' The Select a Country button to get started.</h2>
                     </div>
                 </div>
             </div>
@@ -45,8 +31,8 @@
             <div class="bodyWrapperImage" id="english">
                 <div class="container">
                         <div id="main-categories" class="row">
+                            
                             <div id="countries" class="column-button">
-                                <!-- <button class="button-main" type="button" onclick="chooseInput(this)" id="nuthin"> -->
                                 <button class="button-main" type="button" onclick="getFetch(this)" id="nuthin">
                                     Select a Country
                                 </button>
@@ -54,6 +40,7 @@
                                     <ul id="countriesList"></ul>
                                 </div>
                             </div>
+                            
                             <div id="states" class="column-button">
                                 <button class="button-main" type="button" onclick="chooseInput(this)" id="states">
                                     Select a State
@@ -62,6 +49,7 @@
                                     <ul id="statesList"></ul>
                                 </div>
                             </div>
+                           
                             <div id="cities" class="column-button">
                                 <button class="button-main" type="button" onclick="chooseInput(this)" id="cities">
                                     Choose a City
@@ -70,6 +58,7 @@
                                     <ul id="citiesList"></ul>
                                 </div>
                             </div>
+                           
                             <div id="city_data" class="column-button">
                                 <button class="button-main" type="button" onclick="chooseInput(this)" id="city_data">
                                     City_Data
@@ -81,13 +70,6 @@
                         </div>
                 </div>
                 <div id=displayList>
-                    <div class="translate-container" id="show-hide-div">
-                        <div class="btn-translate-wrapper">
-                            <!-- <button class="btn-translate-btn" type="button" onclick="titleTranslate(this)" id="japanese">
-                                Something Bad Air Related...
-                            </button> -->
-                        </div>
-                    </div>
                     <div class="ul-wrapper">
                         <ul class="ul-display" id="ul-one">
                         </ul>
