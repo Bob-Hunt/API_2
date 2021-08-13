@@ -1,4 +1,4 @@
-// const apiKey = "47a456ff-4d8c-4295-b487-9500e5c8cb5e";
+const apiKey = "47a456ff-4d8c-4295-b487-9500e5c8cb5e";
 
 let searchTerm
 
@@ -26,19 +26,22 @@ async function getCountries(){
 };
 
 async function getStates(country){
-    console.log(`country: ${country}`);
+    console.log(`1country: ${country}`);
     console.log(`Getting States!`);
 
     await fetch(`https://api.airvisual.com/v2/states?country=${country}&key=${apiKey}`)
     .then(function(response){
+        console.log(`2country: ${country}`);
         return response.json();
     })
     .then((json) => {
         console.log(json.data);
+        console.log(`3country: ${country}`);
         let stateObj ={};
         let countryKey = "country";
-        stateObj[countryKey] = country;
+        stateObj[countryKey] = `${country}`;
         dataArr = [];
+        console.log(`dataArr: ${dataArr}`);
         dataArr.push(stateObj);
         for (let dataItem of json.data){
             stateObj ={};
@@ -56,8 +59,8 @@ async function getStates(country){
 };
 
 async function getCities(myButton){
-    console.log(`Country: ${country}`);
-    console.log(`State: ${state}`);
+    console.log(`1Country: ${country}`);
+    console.log(`1State: ${state}`);
     console.log(`Getting Cities`);
 
     await fetch(`https://api.airvisual.com/v2/cities?state=${state}&country=${country}&key=${apiKey}`)
@@ -65,6 +68,11 @@ async function getCities(myButton){
         return response.json();
     })
     .then((json) => {
+        console.log(`2Country: ${country}`);
+        console.log(`2State: ${state}`);
+    
+        console.log(`country: ${country}`);
+        // console.log(`state.country: ${}`)
         console.log(json.data);
         let cityObj ={};
         countryKey = "country";
@@ -139,8 +147,6 @@ async function getCityInfo(country, state, city){
 
 
 /// Bad Air Version of Ghibli Code ///
-let showHideDiv = document.querySelector('.translate-container');
-showHideDiv.setAttribute('id', 'hide-translate-container');
 let displayItems;
 
 let bodyWrapperImg = document.querySelector("bodyWrapperImage");
@@ -197,70 +203,132 @@ async function continueFunction(dataArr){
     console.log(`continueFunction`);
     console.log(dataArr);
 
+    // If (displayOne.firstChild == true) 
     // Removes results from previous button before adding results from current button.
-    while (displayOne.firstChild) {
-        displayOne.removeChild(displayOne.firstChild);
-    };
-    while (displayTwo.firstChild) {
-        displayTwo.removeChild(displayTwo.firstChild);
-    };
-    while (displayThree.firstChild) {
-        displayThree.removeChild(displayThree.firstChild);
-    };
-    console.log(`Finished getting rid of the children!`)    
-    
+        while (displayOne.firstChild) {
+            displayOne.removeChild(displayOne.firstChild);
+        };
+        while (displayTwo.firstChild) {
+            displayTwo.removeChild(displayTwo.firstChild);
+        };
+        while (displayThree.firstChild) {
+            displayThree.removeChild(displayThree.firstChild);
+        };
+        console.log(`Finished getting rid of the children!`) 
+    // };   
+    console.log("moving forward");
+
     let count = 0;
-    console.log(count);
+    console.log('creating buttons');
     for (item of dataArr){
-        console.log(item);
         count += 1;
-        console.log(count);
+        // console.log(`item count: ${count}; item: ${item}`);
         let listItem = document.createElement('input'); 
 
         // checks for key of 'location' or 'current', if exists, uses 'cityData' for the key.
         if (item.hasOwnProperty('location')) {
+            switch (dataArr.indexOf(item)){
+                case 0:
+                    console.log(item);
+                    listItem.setAttribute('__country', `${item}`);
+                    break;
+                case 1:
+                    console.log(item);
+
+                    listItem.setAttribute('__state', `${item}`);
+                    break;
+                case 2:
+                    console.log(item);
+
+                    listItem.setAttribute('__city',`${item}`);
+                default:
+                    break;
+            };
             listItem.innerHTML = `<p>${item.location}</p>`;
-            listItem.setAttribute('__country', `${item.country}`);
-            listItem.setAttribute('__state', `${item.state}`);
-            listItem.setAttribute('__city',`${item.city}`);
+            // listItem.setAttribute('__country', `${item.country}`);
+            // listItem.setAttribute('__state', `${item.state}`);
+            // listItem.setAttribute('__city',`${item.city}`);
             listItem.setAttribute('value',`${item.location}`);
             listItem.setAttribute('onclick', 'chooseInput(this)');
-            break;
+            // break;
                 
         } else if (item.hasOwnProperty('current')) {
+            switch (dataArr.indexOf(item)){
+                case 0:
+                    console.log(item);
+
+                    listItem.setAttribute('__country', `${item}`);
+                    break;
+                case 1:
+                    console.log(item);
+
+                    listItem.setAttribute('__state', `${item}`);
+                    break;
+                case 2:
+                    console.log(item);
+
+                    listItem.setAttribute('__city',`${item}`);
+                default:
+                    break;
+            };
+
             listItem.innerHTML = `<p>${item.current}</p>`;
-            listItem.setAttribute('__country', `${item.country}`);
-            listItem.setAttribute('__state', `${item.state}`);
-            listItem.setAttribute('__city',`${item.city}`);
+            // listItem.setAttribute('__country', `${item.country}`);
+            // listItem.setAttribute('__state', `${item.state}`);
+            // listItem.setAttribute('__city',`${item.city}`);
             listItem.setAttribute('value',`${item.current}`);
             listItem.setAttribute('onclick', 'chooseInput(this)');
-            break;
+            // break;
     
         // checks for key of 'city', if exists, uses 'city' for the key.
         } else if (item.hasOwnProperty('city')) {
+            switch (dataArr.indexOf(item)){
+                case 0:
+                    console.log(item);
+
+                    listItem.setAttribute('__country', `${item}`);
+                    break;
+                case 1:
+                    console.log(item);
+
+                    listItem.setAttribute('__state', `${item}`);
+                    break;
+                default:
+                    break;
+            };
+
             listItem.innerHTML = `<p>${item.city}</p>`;
             listItem.setAttribute('type', 'button');
-            listItem.setAttribute('__country', `${item.country}`);
-            listItem.setAttribute('__state', `${item.state}`);
+            // listItem.setAttribute('__country', `${item.country}`);
+            // listItem.setAttribute('__state', `${item.state}`);
             listItem.setAttribute('__city',`${item.city}`);
             listItem.setAttribute('name','city');
             listItem.setAttribute('value',`${item.city}`);
             listItem.setAttribute('onclick', 'chooseInput(this)');
-            break;
+            // break;
     
         // checks for key of 'state', if exists, uses 'state' for the key.
         } else if (item.hasOwnProperty('state')) {
+            switch (dataArr.indexOf(item)){
+                case 0:
+                    console.log(item);
+                    listItem.setAttribute('__country', `${item}`);
+                    break;
+                default:
+                    break;
+            };
+
             console.log(`has own property state`);
             listItem.innerHTML = `<p>${item.state}</p>`;
             listItem.setAttribute('type', 'button');
-            listItem.setAttribute('__country', `${item.country}`);
-            console.log('__country', `${item.country}`)
+            // listItem.setAttribute('__country', item[0]);
+            // console.log('__country', item[0])
             listItem.setAttribute('__state', `${item.state}`);
-            listItem.setAttribute('__city',`${item.city}`);
+            // listItem.setAttribute('__city',`${item.city}`);
             listItem.setAttribute('name', 'state');
             listItem.setAttribute('value',`${item.state}`);
             listItem.setAttribute('onclick', 'chooseInput(this)');
-            break;
+            // break;
               
         // checks for key of 'country', if exists, uses 'country' for the key.
         } else if (item.hasOwnProperty('country')) {
@@ -274,7 +342,7 @@ async function continueFunction(dataArr){
             listItem.setAttribute('__city',`${item.city}`);
             listItem.setAttribute('value',`${item.country}`);
             listItem.setAttribute('onclick', 'chooseInput(this)');
-            break;
+            // break;
         
         } else { 
             console.log(`Item didn't belong`);
