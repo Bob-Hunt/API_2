@@ -15,7 +15,7 @@ body{
 }
 
 .outer-wrapper{
-    background-image: url("./Assets/chihiro007.jpeg");
+    /* background-image: url("./Assets/chihiro007.jpeg"); */
     background-color: rgb(255, 228, 196);
 }
 
@@ -54,7 +54,7 @@ body{
     min-height: 70vh;
     width: 100vw;
     object-fit: fill;
-    background-image: url("./Assets/chihiro007.jpeg");
+    /* background-image: url("./Assets/chihiro007.jpeg"); */
     background-position-x: center;
     background-position-y: center;
 }
